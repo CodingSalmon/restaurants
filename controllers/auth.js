@@ -158,16 +158,25 @@ function follow(req, res) {
   })
 }
 
-async function unfollow(req, res) {
+function unfollow(req, res) {
   User.findById(req.params.unfollower)
   .then(user => {
-    user.following = user.following.filter(val => val !== req.params.unfollowing)
+    user.following = user.following.filter(val => {
+      
+      console.log(JSON.stringify(val) !== req.params.unfollowing)
+      return JSON.stringify(val) !== JSON.stringify(req.params.unfollowing)
+    })
+    console.log(user)
     user.save()
   })
   
   User.findById(req.params.unfollowing)
   .then(user => {
-    user.followers = user.followers.filter(val => val !== req.params.unfollower)
+    user.followers = user.followers.filter(val => {
+      console.log(typeof JSON.stringify(val), typeof req.params.unfollower)
+      console.log(val != req.params.unfollower, '2')
+      return JSON.stringify(val) !== req.params.unfollower
+    })
     user.save()
     return res.json(user)
   })
