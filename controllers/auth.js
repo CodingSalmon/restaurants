@@ -161,22 +161,13 @@ function follow(req, res) {
 function unfollow(req, res) {
   User.findById(req.params.unfollower)
   .then(user => {
-    user.following = user.following.filter(val => {
-      
-      console.log(JSON.stringify(val) !== req.params.unfollowing)
-      return JSON.stringify(val) !== JSON.stringify(req.params.unfollowing)
-    })
-    console.log(user)
+    user.following = user.following.filter(val => JSON.stringify(val) !== JSON.stringify(req.params.unfollowing))
     user.save()
   })
   
   User.findById(req.params.unfollowing)
   .then(user => {
-    user.followers = user.followers.filter(val => {
-      console.log(typeof JSON.stringify(val), typeof req.params.unfollower)
-      console.log(val != req.params.unfollower, '2')
-      return JSON.stringify(val) !== req.params.unfollower
-    })
+    user.followers = user.followers.filter(val => JSON.stringify(val) !== JSON.stringify(req.params.unfollower))
     user.save()
     return res.json(user)
   })
