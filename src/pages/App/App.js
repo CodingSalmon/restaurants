@@ -11,6 +11,7 @@ import UserPage from '../UserPage/UserPage'
 import UsersPage from '../UsersPage/UsersPage'
 import SearchPage from '../SearchPage/SearchPage'
 import RestaurantPage from '../RestaurantPage/RestaurantPage'
+import LandingPage from '../LandingPage/LandingPage'
 
 import userService from '../../services/userService';
 
@@ -56,6 +57,12 @@ const App = () => {
       />
 
       <Switch>
+        <Route exact path='/' render={() => 
+          <>
+            <LandingPage />
+          </>
+        }></Route>
+
         <Route path='/search' render={() => 
           <>
             <SearchPage />

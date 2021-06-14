@@ -16,7 +16,7 @@ export default function SearchPage() {
         e.preventDefault()
         setIsLoading(true)
         const results = await googleAPI.search(searchTerm)
-        results.data.results.sort((a, b) => b.rating - a.rating)
+        results.data.results.filter(res => res.business_status === 'OPERATIONAL').sort((a, b) => b.rating - a.rating)
         setRestaurants(results.data.results)
         setIsLoading(false)
     }
@@ -30,7 +30,8 @@ export default function SearchPage() {
                     value={searchTerm}
                     onChange={handleChange}
                     type="search"
-                    placeholder="Search for restaurants..."
+                    placeholder="Search for a restaurant or city..."
+                    spellCheck='true'
                     required
                     autoFocus
                 />
