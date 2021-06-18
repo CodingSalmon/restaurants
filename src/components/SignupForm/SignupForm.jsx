@@ -107,10 +107,16 @@ const SignupForm = ({ history, handleSignupOrLogin, updateMessage }) => {
                             disabled={isFormInvalid()}
                         >
                             Sign Up
+                            <i className="material-icons right">
+                                arrow_forward
+                            </i>
                         </button>
                         &nbsp;&nbsp;
                         <Link className="btn red" to="/">
                             Cancel
+                            <i className="material-icons right">
+                                cancel
+                            </i>
                         </Link>
                     </div>
                 </div>

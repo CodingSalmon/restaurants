@@ -70,7 +70,10 @@ const LoginForm = ({ history, handleSignupOrLogin, updateMessage }) => {
                         </button>
                         &nbsp;&nbsp;&nbsp;
                         <Link className="btn red" to="/">
-                            Cancel<i className="material-icons right">cancel</i>
+                            Cancel
+                            <i className="material-icons right">
+                                cancel
+                            </i>
                         </Link>
                     </div>
                 </div>

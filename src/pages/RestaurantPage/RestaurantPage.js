@@ -10,19 +10,22 @@ const RestaurantPage = ({user, handleFavoriteChange}) => {
     const {placeId} = useParams()
     const [restaurant, setRestaurant] = useState(null)
     const [photos, setPhotos] = useState([])
+    const [isLoading, setIsLoading] = useState(null)
 
     useEffect(() => {
         (async () => {
+            setIsLoading(true)
             const currentRestaurant = await googleAPI.getRestaurantDetails(placeId)
             setRestaurant(currentRestaurant.data.result)
             console.log(currentRestaurant)
             let photoArray = []
-            currentRestaurant.data.result.photos.forEach(async photo => {
-                const newPhoto = await googleAPI.getRestaurantPhoto(photo.photo_reference)
-                console.log(newPhoto)
-                photoArray.push(newPhoto.data)
-            })
+            // currentRestaurant.data.result.photos.forEach(async photo => {
+            //     const newPhoto = await googleAPI.getRestaurantPhoto(photo.photo_reference)
+            //     console.log(newPhoto)
+            //     photoArray.push(newPhoto.data)
+            // })
             setPhotos(photoArray)
+            setIsLoading(false)
         })()
     }, [placeId])
 

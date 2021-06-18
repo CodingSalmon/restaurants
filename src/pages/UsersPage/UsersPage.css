@@ -11,7 +11,7 @@
     justify-content: space-around;
     margin: 20px 0;
     height: 125px;
-    width: 45vw;
+    width: 75vw;
     border-radius: 5px;
     border: 2px black solid;
     padding: 0 12px;
@@ -20,4 +20,10 @@
 .user-button-area {
     display: flex;
     justify-content: flex-end;
+}
+
+@media (min-width: 1000px) {
+    .user {
+        width: 45vw;
+    }
 }

@@ -8,16 +8,23 @@
 .search {
     display: flex;
     align-items: center;
-    width: 45vw;
+    width: 90vw;
     margin-bottom: 50px;
 }
 
 .search > input::placeholder {
     font-size: 15px;
+    font-family: 'Croissant One', cursive;
 }
 
 .search > button {
+    display: flex;
+    align-items: center;
     margin-left: 15px;
+}
+
+.search > button > i {
+    padding-top: 2px;
 }
 
 .restaurant {
@@ -50,5 +57,9 @@
 
     .restaurant {
         width: 25vw;
+    }
+
+    .search {
+        width: 45vw;
     }
 }

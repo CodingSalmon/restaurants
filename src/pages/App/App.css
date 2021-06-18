@@ -43,11 +43,9 @@ body {
 .nav {
     width: 100%;
 }
-.nav-wrapper {
-    background-color: rgba(10, 168, 84, 0.692);
-}
 
 .material-icons {
+    display:flex;
     font-family: "Material Icons";
     font-weight: normal;
     font-style: normal;

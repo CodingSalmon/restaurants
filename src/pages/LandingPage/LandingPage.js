@@ -7,7 +7,9 @@ const LandingPage = () => {
 
   return (
     <div className='LandingPage'>
-        Welcome
+        <h3>Restaurants</h3>
+        <h5>Search for restaurants by city or name.</h5>
+        <h5>Create and account and save your favorite restaurants!</h5>
     </div>
   );
 };

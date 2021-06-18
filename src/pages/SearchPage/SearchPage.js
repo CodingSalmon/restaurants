@@ -30,17 +30,22 @@ export default function SearchPage() {
                     value={searchTerm}
                     onChange={handleChange}
                     type="search"
-                    placeholder="Search for a restaurant or city..."
+                    placeholder="Search for a restaurant..."
                     spellCheck='true'
                     required
                     autoFocus
                 />
-                <button type="submit" className="btn">Search</button>
+                <button type="submit" className="btn blue">
+                    Search
+                    <i className="material-icons right">
+                        search
+                    </i>
+                </button>
             </form>
             <div id='restaurants'>
                 {isLoading !== null ? 
                     isLoading ? 
-                        <img className='loading' src='https://cdn.dribbble.com/users/645440/screenshots/3266490/loader-2_food.gif'></img>
+                        <img className='loading' src='https://i.imgur.com/LLUyl4B.gif'></img>
                     :restaurants.map(restaurant => 
                         <div className='restaurant card grey lighten-2' key={restaurant.place_id}>
                             <div>Name: {restaurant.name}</div>
