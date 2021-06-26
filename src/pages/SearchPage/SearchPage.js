@@ -47,11 +47,11 @@ export default function SearchPage() {
                     </i>
                 </button>
             </form>
-            <div id='restaurants'>
-                {isLoading !== null ? 
-                    isLoading ? 
-                        <img className='loading' src='https://i.imgur.com/LLUyl4B.gif'></img>
-                    :restaurants.map(restaurant => 
+            {isLoading !== null ? 
+                isLoading ? 
+                    <img className='loading' src='https://i.imgur.com/LLUyl4B.gif'></img>
+                :<div id='restaurants'>
+                    {restaurants.map(restaurant => 
                         <div className='restaurant card grey lighten-2' key={restaurant.place_id}>
                             <div>Name: {restaurant.name}</div>
                             <div>Address: {restaurant.formatted_address}</div>
@@ -59,9 +59,9 @@ export default function SearchPage() {
                                 <Link to={`/restaurant/${restaurant.place_id}`} className='btn grey darken-2'>Details</Link>
                             </div>
                         </div>
-                    )
-                :''}
-            </div>
+                    )}
+                </div>
+            :''}
         </div>
     )
 }
