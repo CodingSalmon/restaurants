@@ -12,6 +12,10 @@
     margin-bottom: 50px;
 }
 
+.search > input {
+    margin-right: 15px !important;
+}
+
 .search > input::placeholder {
     font-size: 15px;
     font-family: 'Croissant One', cursive;
@@ -20,7 +24,7 @@
 .search > button {
     display: flex;
     align-items: center;
-    margin-left: 15px;
+    /* margin-left: 15px; */
 }
 
 .search > button > i {
@@ -32,7 +36,7 @@
     flex-direction: column;
     justify-content: space-around;
     margin: 20px 0;
-    width: 45vw;
+    width: 65vw;
     border-radius: 5px;
     border: 2px black solid;
     padding: 12px 12px;
@@ -42,7 +46,6 @@
     display: grid;
     justify-content: center;
     align-items: center;
-    grid-template-columns: repeat(1, 1fr);
     grid-gap: 20px;
 }
 
@@ -50,7 +53,35 @@
     height: 200px;
 }
 
-@media (min-width: 1000px) {
+@media (max-width: 500px) {
+    .search {
+        flex-direction: column;
+    }
+
+    .search > input {
+        margin-bottom: 15px !important;
+    }
+
+    #restaurants {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media (min-width: 750px) {
+    #restaurants {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .restaurant {
+        width: 35vw;
+    }
+
+    .search {
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 1100px) {
     #restaurants {
         grid-template-columns: repeat(3, 1fr);
     }

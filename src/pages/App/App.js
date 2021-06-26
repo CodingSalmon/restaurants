@@ -18,7 +18,7 @@ import userService from '../../services/userService';
 import "./App.css";
 
 const App = () => {
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState(null);
 
   const handleLogout = () => {
     userService.logout();
@@ -59,7 +59,7 @@ const App = () => {
       <Switch>
         <Route exact path='/' render={() => 
           <>
-            <LandingPage />
+            <LandingPage user={user}/>
           </>
         }></Route>
 

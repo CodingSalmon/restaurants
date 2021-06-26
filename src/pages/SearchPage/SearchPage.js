@@ -1,21 +1,22 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom'
 
+import SearchLocationInput from '../../components/SearchLocationInput/SearchLocationInput';
+
 import * as googleAPI from '../../services/googleApiService'
 
 import './SearchPage.css'
 
 export default function SearchPage() {
-    const [searchTerm, setSearchTerm] = useState("");
+    const [searchTerm, setSearchTerm] = useState('')
+    const [citySearchTerm, setCitySearchTerm] = useState('')
     const [restaurants, setRestaurants] = useState('')
     const [isLoading, setIsLoading] = useState(null)
-
-    const handleChange = (e) => setSearchTerm(e.target.value)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         setIsLoading(true)
-        const results = await googleAPI.search(searchTerm)
+        const results = await googleAPI.search(searchTerm, citySearchTerm)
         results.data.results.filter(res => res.business_status === 'OPERATIONAL').sort((a, b) => b.rating - a.rating)
         setRestaurants(results.data.results)
         setIsLoading(false)
@@ -28,12 +29,16 @@ export default function SearchPage() {
             >
                 <input
                     value={searchTerm}
-                    onChange={handleChange}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                     type="search"
                     placeholder="Search for a restaurant..."
                     spellCheck='true'
                     required
                     autoFocus
+                />
+                <SearchLocationInput 
+                    citySearchTerm={citySearchTerm}
+                    setCitySearchTerm={setCitySearchTerm}
                 />
                 <button type="submit" className="btn blue">
                     Search

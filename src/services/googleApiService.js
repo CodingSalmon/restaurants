@@ -4,8 +4,8 @@ const key = process.env.REACT_APP_GOOGLE_API_KEY
 const CORS = 'https://sams-cors-anywhere.herokuapp.com/'
 const BASE_URL = "https://maps.googleapis.com/maps/api/place/"
 
-export function search(searchTerm) {
-    return axios.get(`${CORS}${BASE_URL}textsearch/json?query=restaurant+${searchTerm}&key=${key}`)
+export function search(searchTerm, locationSearchTerm) {
+    return axios.get(`${CORS}${BASE_URL}textsearch/json?query=restaurant+${searchTerm}+in+${locationSearchTerm}&key=${key}`)
     .catch((err) => console.log(err));
 }
 

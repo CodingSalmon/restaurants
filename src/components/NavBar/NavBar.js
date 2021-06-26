@@ -68,10 +68,10 @@ const NavBar = ({ user, handleLogout }) => {
                 </ul>
                 :
                 <ul className='dropdownMenu'>
-                  <li className='valign-wrapper'>
+                  <li>
                     <Link className='white-text' to="/login">Log In</Link>
                   </li>
-                  <li className='valign-wrapper'>
+                  <li>
                     <Link className='white-text' to="/signup">Sign Up</Link>
                   </li>
                 </ul>
