@@ -70,6 +70,8 @@ function getUsers(req, res) {
 }
 
 function forgotPassword(req, res) {
+  const googleEmail = process.env.GOOGLE_APP_EMAIL
+  const googlePass = process.env.GOOGLE_APP_PW
   if(process.env.GOOGLE_APP_EMAIL && process.env.GOOGLE_APP_PW) {
     const email = req.body.email
     User.findOne({email}, (err, user) => {
@@ -84,8 +86,8 @@ function forgotPassword(req, res) {
             port: 465,
             secure: true,
             auth: {
-                user: process.env.GOOGLE_APP_EMAIL,
-                pass: process.env.GOOGLE_APP_PW
+                user: googleEmail,
+                pass: googlePass
             },
       });
       
