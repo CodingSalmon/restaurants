@@ -42,8 +42,9 @@ function SearchLocationInput({citySearchTerm, setCitySearchTerm}) {
   const autoCompleteRef = useRef(null);
 
   useEffect(() => {
+    const apiKey = process.env.REACT_APP_GOOGLE_API_KEY
     loadScript(
-      `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places`,
+      `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`,
       () => handleScriptLoad(setCitySearchTerm, autoCompleteRef)
     );
   }, []);
