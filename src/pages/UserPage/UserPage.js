@@ -22,12 +22,12 @@ const UserPage = ({loggedInUser}) => {
     }, [id])
 
     const follow = async () => {
-        await userService.follow(loggedInUser._id, user._id)
+        await userService.follow(user._id)
         setUser({...user, followers:[...user.followers, loggedInUser]})
     }
 
     const unfollow = async () => {
-        await userService.unfollow(loggedInUser._id, user._id)
+        await userService.unfollow(user._id)
         setUser({...user, followers:user.followers.filter(f => f._id !== loggedInUser._id)})
     }
 

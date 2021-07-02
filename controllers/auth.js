@@ -146,7 +146,7 @@ function updatePassword(req, res) {
 }
 
 function follow(req, res) {
-  User.findById(req.params.follower)
+  User.findById(req.user._id)
   .then(user => {
     user.following.push(req.params.following)
     user.save()
@@ -154,14 +154,14 @@ function follow(req, res) {
 
   User.findById(req.params.following)
   .then(user => {
-    user.followers.push(req.params.follower)
+    user.followers.push(req.user._id)
     user.save()
     return res.json(user)
   })
 }
 
 function unfollow(req, res) {
-  User.findById(req.params.unfollower)
+  User.findById(req.user._id)
   .then(user => {
     user.following = user.following.filter(val => JSON.stringify(val) !== JSON.stringify(req.params.unfollowing))
     user.save()
@@ -169,7 +169,7 @@ function unfollow(req, res) {
   
   User.findById(req.params.unfollowing)
   .then(user => {
-    user.followers = user.followers.filter(val => JSON.stringify(val) !== JSON.stringify(req.params.unfollower))
+    user.followers = user.followers.filter(val => JSON.stringify(val) !== JSON.stringify(req.user._id))
     user.save()
     return res.json(user)
   })

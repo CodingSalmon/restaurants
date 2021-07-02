@@ -10,8 +10,8 @@ router.put('/forgot-password', authCtrl.forgotPassword)
 router.put('/reset-password', authCtrl.updatePassword)
 
 router.use(require('../config/auth'));
-router.get('/follow/:follower/:following', checkAuth, authCtrl.follow)
-router.get('/unfollow/:unfollower/:unfollowing', checkAuth, authCtrl.unfollow)
+router.get('/follow/:following', checkAuth, authCtrl.follow)
+router.get('/unfollow/:unfollowing', checkAuth, authCtrl.unfollow)
 router.get('/favorite/:placeId', checkAuth, authCtrl.favorite)
 router.get('/unfavorite/:placeId', checkAuth, authCtrl.unfavorite)
 
