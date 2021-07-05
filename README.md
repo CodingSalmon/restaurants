@@ -2,7 +2,7 @@
 
 ### Restaurants Around the World is an application where users can search for restaurants all over the world and save their favorites. 
 
-[Click Here to Open App]()
+[Click Here to Open App](https://restaurants-atw.herokuapp.com)
 
 ## Technologies Used
 
