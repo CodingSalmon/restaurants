@@ -1,20 +1,23 @@
-const axios = require('axios')
-
-const key = process.env.REACT_APP_GOOGLE_API_KEY
-const CORS = 'https://sams-cors-anywhere.herokuapp.com/'
-const BASE_URL = "https://maps.googleapis.com/maps/api/place/"
+const BASE_URL = '/api/google/';
 
 export function search(searchTerm, locationSearchTerm) {
-    return axios.get(`${CORS}${BASE_URL}textsearch/json?query=restaurant+${searchTerm}+in+${locationSearchTerm}&key=${key}`)
-    .catch((err) => console.log(err));
+    return fetch(`${BASE_URL}search/${searchTerm}/${locationSearchTerm ? locationSearchTerm : 'anywhere'}`, {
+        headers: new Headers({'Content-Type': 'application/json'}),
+    })
+    .then(res => res.json())
+    .catch(err => {console.log(err)})
 }
 
 export function getRestaurantDetails(placeId) {
-    return axios.get(`${CORS}${BASE_URL}details/json?place_id=${placeId}&key=${key}`)
-    .catch((err) => console.log(err));
+    return fetch(`${BASE_URL}details/${placeId}`, {
+        headers: new Headers({'Content-Type': 'application/json'}),
+    })
+    .then(res => res.json())
+    .catch(err => {console.log(err)})
 }
 
-export function getRestaurantPhoto(ref) {
-    return axios.get(`${CORS}${BASE_URL}photo?maxwidth=400&photoreference=${ref}&key=${key}`)
-    .catch((err) => console.log(err));
-}
+// export function getRestaurantPhoto(ref) {
+    // return axios.get(`${CORS}${BASE_URL}photo?maxwidth=400&photoreference=${ref}&key=${key}`)
+    // .then(res => res.json())
+    // .catch((err) => console.log(err));
+// }

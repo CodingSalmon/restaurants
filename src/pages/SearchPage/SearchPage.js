@@ -10,15 +10,15 @@ import './SearchPage.css'
 export default function SearchPage() {
     const [searchTerm, setSearchTerm] = useState('')
     const [citySearchTerm, setCitySearchTerm] = useState('')
-    const [restaurants, setRestaurants] = useState('')
+    const [restaurants, setRestaurants] = useState([])
     const [isLoading, setIsLoading] = useState(null)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         setIsLoading(true)
         const results = await googleAPI.search(searchTerm, citySearchTerm)
-        results.data.results.filter(res => res.business_status === 'OPERATIONAL').sort((a, b) => b.rating - a.rating)
-        setRestaurants(results.data.results)
+        results.filter(res => res.business_status === 'OPERATIONAL').sort((a, b) => b.rating - a.rating)
+        setRestaurants(results)
         setIsLoading(false)
     }
     return (
@@ -51,15 +51,17 @@ export default function SearchPage() {
                 isLoading ? 
                     <img className='loading' src='https://i.imgur.com/LLUyl4B.gif'></img>
                 :<div id='restaurants'>
-                    {restaurants.map(restaurant => 
-                        <div className='restaurant card grey lighten-2' key={restaurant.place_id}>
-                            <div>Name: {restaurant.name}</div>
-                            <div>Address: {restaurant.formatted_address}</div>
-                            <div className='user-button-area'>
-                                <Link to={`/restaurant/${restaurant.place_id}`} className='btn grey darken-2'>Details</Link>
+                    {restaurants.length ? 
+                        restaurants.map(restaurant => 
+                            <div className='restaurant card grey lighten-2' key={restaurant.place_id}>
+                                <div>Name: {restaurant.name}</div>
+                                <div>Address: {restaurant.formatted_address}</div>
+                                <div className='user-button-area'>
+                                    <Link to={`/restaurant/${restaurant.place_id}`} className='btn grey darken-2'>Details</Link>
+                                </div>
                             </div>
-                        </div>
-                    )}
+                        )
+                    :<h2>No Results</h2>}
                 </div>
             :''}
         </div>
